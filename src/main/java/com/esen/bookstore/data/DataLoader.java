@@ -7,6 +7,7 @@ import com.esen.bookstore.repository.BookStoreRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.pmw.tinylog.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +24,11 @@ import java.util.List;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class DataLoader {
 
-    public DataLoader(BookRepository bookRepository, BookStoreRepository bookStoreRepository) {
-        this.bookRepository = bookRepository;
-        this.bookStoreRepository = bookStoreRepository;
-    }
-
-    @Autowired
     private final BookRepository bookRepository;
 
-    @Autowired
     private final BookStoreRepository bookStoreRepository;
 
     @Value("classpath:Books.json")
@@ -41,6 +36,7 @@ public class DataLoader {
 
     @Value("classpath:BookStores.json")
     private Resource bookStoresResource;
+
 
 
     @PostConstruct
