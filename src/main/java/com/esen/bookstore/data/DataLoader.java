@@ -21,6 +21,8 @@ import org.springframework.util.StreamUtils;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @Component
 @Slf4j
@@ -52,6 +54,15 @@ public class DataLoader {
 
             var bookStoreJson = StreamUtils.copyToString(bookStoresResource.getInputStream(), StandardCharsets.UTF_8);
             var bookStores = objectMapper.readValue(bookStoreJson, new TypeReference<List<Bookstore>>() {});
+
+            bookStores.forEach(bookstore -> {
+                bookstore.setInventory(books.stream()
+                        .collect(Collectors.toMap(
+                                book -> book,
+                                book -> ThreadLocalRandom.current().nextInt(1,50)
+                        )));
+
+            });
 
             bookStoreRepository.saveAll(bookStores);
 
