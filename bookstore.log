@@ -1,0 +1,24 @@
+1745306177225:help
+1745306188879:list books
+1745306767478:quit
+1745306819362:help
+1745306835176:create book
+1745306866687:create book --title
+1745306873871:create book --title A
+1745306970895:help
+1745306979159:list books
+1745306987887:create books
+1745306990687:create book
+1745306993895:list books
+1745307029456:create book
+1745307106553:create book --price 10 --title A --author B --publisher C
+1745307128320:list books
+1745307213243:create book --price 10 --title A --author B --publisher C
+1745307225975:list books
+1745307274314:create book --price 10 --title A --author B --publisher C
+1745307276191:list books
+1745307297259:@Builder
+1745307297272:@NoArgsConstructor
+1745307297529:@AllArgsConstructor
+1745307316825:create book --price 10 --title A --author B --publisher C
+1745307322327:list books

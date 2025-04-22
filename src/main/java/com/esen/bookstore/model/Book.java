@@ -1,9 +1,7 @@
 package com.esen.bookstore.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Generated;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +9,9 @@ import java.util.Objects;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     @Id
