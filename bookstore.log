@@ -22,3 +22,23 @@
 1745307297529:@AllArgsConstructor
 1745307316825:create book --price 10 --title A --author B --publisher C
 1745307322327:list books
+1745907679729:help
+1745907686921:list books
+1745909323467:help
+1745909332871:list books
+1745909345404:delete book 1
+1745909351364:delete book {1}
+1745909360386:delete book {long 1}
+1745909376857:delete book id=1
+1745909398560:update book 1
+1745909403823:update book 1 A
+1745909797226:delete book 1
+1745909803645:list books
+1745909841756:help
+1745910266535:delete book 1
+1745910623482:help
+1745910632583:list bookstores
+1745911408347:help
+1745911415771:list bookstores
+1745911422916:delete bookstore 1
+1745911424976:list bookstores

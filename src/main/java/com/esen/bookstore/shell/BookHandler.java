@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.shell.standard.ShellCommandGroup;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
 import java.util.stream.Collectors;
 
@@ -32,5 +33,19 @@ public class BookHandler {
         return bookService.findAll().stream()
                 .map(Book::toString)
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    @ShellMethod(value = "Delete book by ID", key = "delete book")
+    public void deleteBook(long id) {
+        bookService.delete(id);
+    }
+
+    @ShellMethod(value = "Update book", key = "update book")
+    public String updateBook(@ShellOption(defaultValue = ShellOption.NULL) Long id,
+                             @ShellOption(defaultValue = ShellOption.NULL) String publisher,
+                             @ShellOption(defaultValue = ShellOption.NULL) Double price,
+                             @ShellOption(defaultValue = ShellOption.NULL) String title,
+                             @ShellOption(defaultValue = ShellOption.NULL) String author) {
+        return bookService.update(id, publisher, price, title, author).toString();
     }
 }
