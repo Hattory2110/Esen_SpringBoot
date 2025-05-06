@@ -10,6 +10,8 @@ import org.pmw.tinylog.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -41,4 +43,23 @@ public class BookstoreService {
 
         Logger.info("Delete sucessful.");
     }
+
+    public Bookstore update(Long id, String location, Double priceModifier, Double moneyInRegister) {
+        if (Stream.of(location, priceModifier, moneyInRegister).allMatch(Objects::isNull)) {
+            throw new IllegalArgumentException("At least one input is required");
+        }
+
+        if(!repository.existsById(id)) {
+            throw new IllegalArgumentException("Cannot find bookstore");
+        }
+
+        var bookstore = repository.findById(id).get();
+
+        if (location != null) { bookstore.setLocation(location);}
+        if (priceModifier != null) { bookstore.setPriceModifier(priceModifier);}
+        if (moneyInRegister != null) { bookstore.setMoneyInRegister(moneyInRegister);}
+
+        return repository.save(bookstore);
+    }
+
 }

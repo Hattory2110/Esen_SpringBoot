@@ -9,6 +9,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @ShellComponent
@@ -47,5 +48,21 @@ public class BookHandler {
                              @ShellOption(defaultValue = ShellOption.NULL) String title,
                              @ShellOption(defaultValue = ShellOption.NULL) String author) {
         return bookService.update(id, publisher, price, title, author).toString();
+    }
+
+    @ShellMethod(value = "Find book price", key = "findprice book")
+    public String getPriceList(long id) {
+        return bookService.findPrices(id).toString();
+    }
+
+    @ShellMethod(value = "Filter books", key = "filter book")
+    public String filterBooks(
+            @ShellOption(defaultValue = ShellOption.NULL) String publisher,
+            @ShellOption(defaultValue = ShellOption.NULL) Double price,
+            @ShellOption(defaultValue = ShellOption.NULL) String title,
+            @ShellOption(defaultValue = ShellOption.NULL) String author) {
+        return bookService.filterBook(publisher, price, title, author).stream()
+                .map(Book::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }

@@ -2,14 +2,14 @@ package com.esen.bookstore.service;
 
 
 import com.esen.bookstore.model.Book;
+import com.esen.bookstore.model.Bookstore;
 import com.esen.bookstore.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.pmw.tinylog.Logger;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Service
@@ -56,5 +56,37 @@ public class BookService {
         if (author != null) { book.setAuthor(author);}
 
         return bookRepository.save(book);
+    }
+
+    public Map<String, Double> findPrices(Long id) {
+        var bookstores = bookstoreService.findAll();
+        var book = bookRepository.findById(id).get();
+
+        Map<String, Double> priceList = new HashMap<>();
+
+        for (Bookstore bookstore : bookstores) {
+            /*
+            if (bookstore.getInventory().containsKey(book)) {
+                priceList.put(bookstore.getLocation(), bookstore.getPriceModifier()*book.getPrice());
+            }*/
+
+            priceList.put(bookstore.getLocation(), bookstore.getPriceModifier()*book.getPrice());
+        }
+
+        return priceList;
+    }
+
+    public List<Book> filterBook(String publisher, Double price, String title, String author) {
+        var books = bookRepository.findAll().stream()
+                .filter(book -> {
+                    if (title != null) { return book.getTitle().equals(title);}
+                    if (publisher != null) { return book.getPublisher().equals(publisher);}
+                    if (price != null) { return book.getPrice()==price;}
+                    if (author != null) { return book.getAuthor().equals(author);}
+                    return true;
+                })
+                .toList();
+
+        return books;
     }
 }

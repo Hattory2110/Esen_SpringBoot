@@ -42,3 +42,33 @@
 1745911415771:list bookstores
 1745911422916:delete bookstore 1
 1745911424976:list bookstores
+1746512414209:help
+1746512429517:list bookstore
+1746512436091:list bookstores
+1746512486552:create bookstore nagy, 1.02, null, null
+1746512502915:create bookstore nagy 1.02 null null
+1746512510247:create bookstore nagy 1.02
+1746512513786:list bookstores
+1746512535603:update 6 kicsi 1.8
+1746512544368:update bookstore 6 kicsi 1.8
+1746512546869:list bookstores
+1746512634373:help
+1746512646228:delete bookstore 6
+1746512648599:list bookstores
+1746513742760:help
+1746513747074:list bookstores
+1746513774736:update bookstore --id 3 --location kiskutya
+1746513779132:list bookstores
+1746514995339:help
+1746515001206:list books
+1746515012738:findprice book 3
+1746515018431:findprice book 1
+1746515036905:list bookstores
+1746515220829:findprice book 3
+1746515952964:filter book
+1746515980675:filter book Az aranyember
+1746515987229:filter book "Az aranyember"
+1746516043798:filter book --title "Az aranyember"
+1746516232272:help
+1746516238137:list books
+1746516273378:filter book --author "Jókai Mór"
